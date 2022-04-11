@@ -7,7 +7,7 @@ Using different techniques:
 1. To explores security challenges based on microarchitectural features and hardware isolation techniques.
 
 ## Main works
-1. A Cycle-by-Cycle Simulator of an Out-of-Order Processor (implemented by Python).
+1. A Cycle-by-Cycle Simulator of an Out-of-Order Processor [1] (implemented by Python).
 
 ## Reference
-[1] [MIPS R10000 Superscalar Microprocessor](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=491460).
+1. [MIPS R10000 Superscalar Microprocessor](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=491460).
