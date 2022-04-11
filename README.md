@@ -8,3 +8,6 @@ Using different techniques:
 
 ## Main works
 1. A Cycle-by-Cycle Simulator of an Out-of-Order Processor (implemented by Python).
+
+## Reference
+[1] [MIPS R10000 Superscalar Microprocessor](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=491460).
