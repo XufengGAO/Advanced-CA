@@ -8,7 +8,7 @@ Using different computer architecture techniques:
 
 ## Main works
 1. A Cycle-by-Cycle Simulator of an Out-of-Order Processor [1] (implemented by Python).
-2. A Cycle-by-Cycle Scheduler for a VLIW Processor [2][3] (implemented by Python).
+2. A Cycle-by-Cycle Scheduler for a VLIW Processor [2-3] (implemented by Python).
 3. High-level Synthesis. (implemented by C)
 
 ## Reference
