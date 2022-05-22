@@ -1,0 +1,56 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'cs470' on host 'cs470-VirtualBox' (Linux_x86_64 version 4.15.0-142-generic) on Sun May 22 23:38:37 CEST 2022
+INFO: [HLS 200-10] On os Ubuntu 16.04.7 LTS
+INFO: [HLS 200-10] In directory '/home/cs470/Downloads/hw3-kernels/kernel5'
+INFO: [HLS 200-10] Opening project '/home/cs470/Downloads/hw3-kernels/kernel5/prj_kernel5'.
+INFO: [HLS 200-10] Adding design file 'kernel5.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file 'kernel5_test.cpp' to the project
+INFO: [HLS 200-10] Opening solution '/home/cs470/Downloads/hw3-kernels/kernel5/prj_kernel5/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7k160tfbg484-1'
+INFO: [HLS 200-10] Analyzing design file 'kernel5.cpp' ... 
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 325.160 ; gain = 12.586 ; free physical = 100 ; free virtual = 269
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.160 ; gain = 12.586 ; free physical = 96 ; free virtual = 269
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.160 ; gain = 12.586 ; free physical = 89 ; free virtual = 267
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.160 ; gain = 12.586 ; free physical = 89 ; free virtual = 268
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 453.156 ; gain = 140.582 ; free physical = 63 ; free virtual = 248
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'i'.
+WARNING: [ANALYSIS 214-52] Found false inter dependency for variable 'sum.'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 453.156 ; gain = 140.582 ; free physical = 67 ; free virtual = 255
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel5' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 6.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 3.2 seconds; current allocated memory: 55.721 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 55.953 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel5/bound' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel5/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel5/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel5' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'kernel5_fadd_32ns_32ns_32_4_full_dsp' to 'kernel5_fadd_32nsbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'kernel5_fcmp_32ns_32ns_1_1' to 'kernel5_fcmp_32nscud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'kernel5_fadd_32nsbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'kernel5_fcmp_32nscud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel5'.
+INFO: [HLS 200-111]  Elapsed time: 0.14 seconds; current allocated memory: 56.326 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:02 ; elapsed = 00:00:04 . Memory (MB): peak = 453.156 ; gain = 140.582 ; free physical = 76 ; free virtual = 249
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel5.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel5.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel5.
+INFO: [HLS 200-112] Total elapsed time: 3.71 seconds; peak allocated memory: 56.326 MB.

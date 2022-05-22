@@ -1,0 +1,750 @@
+
+
+================================================================
+== Vivado HLS Report for 'kernel3'
+================================================================
+* Date:           Sun May 22 23:07:48 2022
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        prj_kernel3
+* Solution:       solution1
+* Product family: kintex7
+* Target device:  xc7k160tfbg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.56|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+------+------+------+---------+
+    |   Latency   |   Interval  | Pipeline|
+    |  min |  max |  min |  max |   Type  |
+    +------+------+------+------+---------+
+    |  4106|  4106|  4107|  4107|   none  |
+    +------+------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+------+------+----------+-----------+-----------+------+----------+
+        |          |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+------+------+----------+-----------+-----------+------+----------+
+        |- Loop 1  |  4087|  4087|         7|          4|          4|  1021|    yes   |
+        +----------+------+------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 4, depth = 7
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 26
+* Pipeline: 1
+  Pipeline-0: II = 4, D = 7, States = { 17 18 19 20 21 22 23 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	11  / true
+11 --> 
+	12  / true
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	17  / true
+17 --> 
+	18  / true
+18 --> 
+	19  / true
+19 --> 
+	20  / true
+20 --> 
+	24  / (exitcond)
+	21  / (!exitcond)
+21 --> 
+	22  / true
+22 --> 
+	23  / true
+23 --> 
+	17  / true
+24 --> 
+	25  / true
+25 --> 
+	26  / true
+26 --> 
+* FSM state operations: 
+
+ <State 1>: 2.33ns
+ST_1: index_addr (7)  [1/1] 0.00ns
+_ifconv36:3  %index_addr = getelementptr [1024 x i32]* %index, i64 0, i64 0
+
+ST_1: index0 (10)  [2/2] 2.33ns  loc: kernel3.cpp:10
+_ifconv36:6  %index0 = load i32* %index_addr, align 4
+
+
+ <State 2>: 4.66ns
+ST_2: weight_addr (8)  [1/1] 0.00ns
+_ifconv36:4  %weight_addr = getelementptr [1024 x float]* %weight, i64 0, i64 0
+
+ST_2: index0 (10)  [1/2] 2.33ns  loc: kernel3.cpp:10
+_ifconv36:6  %index0 = load i32* %index_addr, align 4
+
+ST_2: tmp (15)  [1/1] 0.00ns  loc: kernel3.cpp:15
+_ifconv36:11  %tmp = sext i32 %index0 to i64
+
+ST_2: hist_addr (16)  [1/1] 0.00ns  loc: kernel3.cpp:15
+_ifconv36:12  %hist_addr = getelementptr [1024 x float]* %hist, i64 0, i64 %tmp
+
+ST_2: hist_load (17)  [2/2] 2.33ns  loc: kernel3.cpp:15
+_ifconv36:13  %hist_load = load float* %hist_addr, align 4
+
+ST_2: weight_load (18)  [2/2] 2.33ns  loc: kernel3.cpp:15
+_ifconv36:14  %weight_load = load float* %weight_addr, align 4
+
+
+ <State 3>: 2.33ns
+ST_3: hist_load (17)  [1/2] 2.33ns  loc: kernel3.cpp:15
+_ifconv36:13  %hist_load = load float* %hist_addr, align 4
+
+ST_3: weight_load (18)  [1/2] 2.33ns  loc: kernel3.cpp:15
+_ifconv36:14  %weight_load = load float* %weight_addr, align 4
+
+
+ <State 4>: 7.72ns
+ST_4: hist0 (19)  [4/4] 7.72ns  loc: kernel3.cpp:15
+_ifconv36:15  %hist0 = fadd float %hist_load, %weight_load
+
+
+ <State 5>: 7.72ns
+ST_5: index_addr_1 (11)  [1/1] 0.00ns  loc: kernel3.cpp:11
+_ifconv36:7  %index_addr_1 = getelementptr [1024 x i32]* %index, i64 0, i64 1
+
+ST_5: index1 (12)  [2/2] 2.33ns  loc: kernel3.cpp:11
+_ifconv36:8  %index1 = load i32* %index_addr_1, align 4
+
+ST_5: hist0 (19)  [3/4] 7.72ns  loc: kernel3.cpp:15
+_ifconv36:15  %hist0 = fadd float %hist_load, %weight_load
+
+
+ <State 6>: 7.72ns
+ST_6: index1 (12)  [1/2] 2.33ns  loc: kernel3.cpp:11
+_ifconv36:8  %index1 = load i32* %index_addr_1, align 4
+
+ST_6: hist0 (19)  [2/4] 7.72ns  loc: kernel3.cpp:15
+_ifconv36:15  %hist0 = fadd float %hist_load, %weight_load
+
+ST_6: weight_addr_1 (21)  [1/1] 0.00ns  loc: kernel3.cpp:21
+_ifconv36:17  %weight_addr_1 = getelementptr [1024 x float]* %weight, i64 0, i64 1
+
+ST_6: weight_load_1 (22)  [2/2] 2.33ns  loc: kernel3.cpp:21
+_ifconv36:18  %weight_load_1 = load float* %weight_addr_1, align 4
+
+ST_6: tmp_4 (23)  [1/1] 0.00ns  loc: kernel3.cpp:23
+_ifconv36:19  %tmp_4 = sext i32 %index1 to i64
+
+ST_6: hist_addr_1 (24)  [1/1] 0.00ns  loc: kernel3.cpp:23
+_ifconv36:20  %hist_addr_1 = getelementptr [1024 x float]* %hist, i64 0, i64 %tmp_4
+
+ST_6: hist_load_1 (25)  [2/2] 2.33ns  loc: kernel3.cpp:23
+_ifconv36:21  %hist_load_1 = load float* %hist_addr_1, align 4
+
+
+ <State 7>: 8.56ns
+ST_7: hist0 (19)  [1/4] 7.72ns  loc: kernel3.cpp:15
+_ifconv36:15  %hist0 = fadd float %hist_load, %weight_load
+
+ST_7: tmp_2 (20)  [1/1] 1.65ns  loc: kernel3.cpp:18
+_ifconv36:16  %tmp_2 = icmp eq i32 %index1, %index0
+
+ST_7: weight_load_1 (22)  [1/2] 2.33ns  loc: kernel3.cpp:21
+_ifconv36:18  %weight_load_1 = load float* %weight_addr_1, align 4
+
+ST_7: hist_load_1 (25)  [1/2] 2.33ns  loc: kernel3.cpp:23
+_ifconv36:21  %hist_load_1 = load float* %hist_addr_1, align 4
+
+ST_7: hist4_v (26)  [1/1] 0.84ns  loc: kernel3.cpp:18
+_ifconv36:22  %hist4_v = select i1 %tmp_2, float %hist0, float %hist_load_1
+
+ST_7: index4 (28)  [1/1] 0.84ns  loc: kernel3.cpp:18
+_ifconv36:24  %index4 = select i1 %tmp_2, i32 -1, i32 %index0
+
+
+ <State 8>: 7.72ns
+ST_8: hist1 (27)  [4/4] 7.72ns  loc: kernel3.cpp:18
+_ifconv36:23  %hist1 = fadd float %hist4_v, %weight_load_1
+
+
+ <State 9>: 7.72ns
+ST_9: index_addr_2 (13)  [1/1] 0.00ns  loc: kernel3.cpp:12
+_ifconv36:9  %index_addr_2 = getelementptr [1024 x i32]* %index, i64 0, i64 2
+
+ST_9: index2 (14)  [2/2] 2.33ns  loc: kernel3.cpp:12
+_ifconv36:10  %index2 = load i32* %index_addr_2, align 4
+
+ST_9: hist1 (27)  [3/4] 7.72ns  loc: kernel3.cpp:18
+_ifconv36:23  %hist1 = fadd float %hist4_v, %weight_load_1
+
+
+ <State 10>: 7.72ns
+ST_10: index2 (14)  [1/2] 2.33ns  loc: kernel3.cpp:12
+_ifconv36:10  %index2 = load i32* %index_addr_2, align 4
+
+ST_10: hist1 (27)  [2/4] 7.72ns  loc: kernel3.cpp:18
+_ifconv36:23  %hist1 = fadd float %hist4_v, %weight_load_1
+
+ST_10: weight_addr_2 (30)  [1/1] 0.00ns  loc: kernel3.cpp:28
+_ifconv36:26  %weight_addr_2 = getelementptr [1024 x float]* %weight, i64 0, i64 2
+
+ST_10: weight_load_2 (31)  [2/2] 2.33ns  loc: kernel3.cpp:28
+_ifconv36:27  %weight_load_2 = load float* %weight_addr_2, align 4
+
+ST_10: tmp_s (33)  [1/1] 0.00ns  loc: kernel3.cpp:33
+_ifconv36:29  %tmp_s = sext i32 %index2 to i64
+
+ST_10: hist_addr_2 (34)  [1/1] 0.00ns  loc: kernel3.cpp:33
+_ifconv36:30  %hist_addr_2 = getelementptr [1024 x float]* %hist, i64 0, i64 %tmp_s
+
+ST_10: hist_load_2 (35)  [2/2] 2.33ns  loc: kernel3.cpp:33
+_ifconv36:31  %hist_load_2 = load float* %hist_addr_2, align 4
+
+
+ <State 11>: 8.56ns
+ST_11: hist1 (27)  [1/4] 7.72ns  loc: kernel3.cpp:18
+_ifconv36:23  %hist1 = fadd float %hist4_v, %weight_load_1
+
+ST_11: tmp_6 (29)  [1/1] 1.65ns  loc: kernel3.cpp:26
+_ifconv36:25  %tmp_6 = icmp eq i32 %index2, %index1
+
+ST_11: weight_load_2 (31)  [1/2] 2.33ns  loc: kernel3.cpp:28
+_ifconv36:27  %weight_load_2 = load float* %weight_addr_2, align 4
+
+ST_11: tmp_8 (32)  [1/1] 1.65ns  loc: kernel3.cpp:29
+_ifconv36:28  %tmp_8 = icmp eq i32 %index2, %index4
+
+ST_11: hist_load_2 (35)  [1/2] 2.33ns  loc: kernel3.cpp:33
+_ifconv36:31  %hist_load_2 = load float* %hist_addr_2, align 4
+
+ST_11: index1_1_ph (36)  [1/1] 0.84ns  loc: kernel3.cpp:26
+_ifconv36:32  %index1_1_ph = select i1 %tmp_6, i32 -1, i32 %index1
+
+ST_11: sel_tmp (37)  [1/1] 0.00ns  loc: kernel3.cpp:26 (grouped into LUT with out node sel_tmp3)
+_ifconv36:33  %sel_tmp = xor i1 %tmp_6, true
+
+ST_11: sel_tmp3 (38)  [1/1] 0.84ns  loc: kernel3.cpp:29 (out node of the LUT)
+_ifconv36:34  %sel_tmp3 = and i1 %tmp_8, %sel_tmp
+
+ST_11: sel_tmp4 (39)  [1/1] 0.00ns  loc: kernel3.cpp:29 (grouped into LUT with out node index0_3_ph)
+_ifconv36:35  %sel_tmp4 = select i1 %sel_tmp3, i32 -1, i32 %index4
+
+ST_11: index0_3_ph (40)  [1/1] 0.84ns  loc: kernel3.cpp:26 (out node of the LUT)
+_ifconv36:36  %index0_3_ph = select i1 %tmp_6, i32 %index4, i32 %sel_tmp4
+
+ST_11: sel_tmp53_v (41)  [1/1] 0.00ns  loc: kernel3.cpp:29 (grouped into LUT with out node hist1_2_ph_v)
+_ifconv36:37  %sel_tmp53_v = select i1 %sel_tmp3, float %hist0, float %hist_load_2
+
+ST_11: hist1_2_ph_v (42)  [1/1] 0.84ns  loc: kernel3.cpp:26 (out node of the LUT)
+_ifconv36:38  %hist1_2_ph_v = select i1 %tmp_6, float %hist1, float %sel_tmp53_v
+
+
+ <State 12>: 7.72ns
+ST_12: hist2 (43)  [4/4] 7.72ns  loc: kernel3.cpp:26
+_ifconv36:39  %hist2 = fadd float %hist1_2_ph_v, %weight_load_2
+
+
+ <State 13>: 7.72ns
+ST_13: hist2 (43)  [3/4] 7.72ns  loc: kernel3.cpp:26
+_ifconv36:39  %hist2 = fadd float %hist1_2_ph_v, %weight_load_2
+
+
+ <State 14>: 7.72ns
+ST_14: hist2 (43)  [2/4] 7.72ns  loc: kernel3.cpp:26
+_ifconv36:39  %hist2 = fadd float %hist1_2_ph_v, %weight_load_2
+
+
+ <State 15>: 7.72ns
+ST_15: hist2 (43)  [1/4] 7.72ns  loc: kernel3.cpp:26
+_ifconv36:39  %hist2 = fadd float %hist1_2_ph_v, %weight_load_2
+
+
+ <State 16>: 1.08ns
+ST_16: StgValue_81 (4)  [1/1] 0.00ns
+_ifconv36:0  call void (...)* @_ssdm_op_SpecBitsMap([1024 x float]* %hist) nounwind, !map !7
+
+ST_16: StgValue_82 (5)  [1/1] 0.00ns
+_ifconv36:1  call void (...)* @_ssdm_op_SpecBitsMap([1024 x float]* %weight) nounwind, !map !13
+
+ST_16: StgValue_83 (6)  [1/1] 0.00ns
+_ifconv36:2  call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %index) nounwind, !map !17
+
+ST_16: StgValue_84 (9)  [1/1] 0.00ns
+_ifconv36:5  call void (...)* @_ssdm_op_SpecTopModule([8 x i8]* @kernel3_str) nounwind
+
+ST_16: StgValue_85 (44)  [1/1] 1.08ns  loc: kernel3.cpp:36
+_ifconv36:40  br label %.preheader
+
+
+ <State 17>: 2.33ns
+ST_17: i (52)  [1/1] 0.00ns
+.preheader:6  %i = phi i11 [ %i_1, %._crit_edge3 ], [ 3, %_ifconv36 ]
+
+ST_17: exitcond (53)  [1/1] 1.45ns  loc: kernel3.cpp:36
+.preheader:7  %exitcond = icmp eq i11 %i, -1024
+
+ST_17: tmp_3 (59)  [1/1] 0.00ns  loc: kernel3.cpp:39
+_ifconv:3  %tmp_3 = zext i11 %i to i64
+
+ST_17: index_addr_3 (60)  [1/1] 0.00ns  loc: kernel3.cpp:39
+_ifconv:4  %index_addr_3 = getelementptr [1024 x i32]* %index, i64 0, i64 %tmp_3
+
+ST_17: index3 (61)  [2/2] 2.33ns  loc: kernel3.cpp:39
+_ifconv:5  %index3 = load i32* %index_addr_3, align 4
+
+ST_17: weight_addr_3 (62)  [1/1] 0.00ns  loc: kernel3.cpp:40
+_ifconv:6  %weight_addr_3 = getelementptr [1024 x float]* %weight, i64 0, i64 %tmp_3
+
+ST_17: weight3 (63)  [2/2] 2.33ns  loc: kernel3.cpp:40
+_ifconv:7  %weight3 = load float* %weight_addr_3, align 4
+
+ST_17: i_1 (94)  [1/1] 1.40ns  loc: kernel3.cpp:36
+._crit_edge3:1  %i_1 = add i11 %i, 1
+
+
+ <State 18>: 4.66ns
+ST_18: index3 (61)  [1/2] 2.33ns  loc: kernel3.cpp:39
+_ifconv:5  %index3 = load i32* %index_addr_3, align 4
+
+ST_18: weight3 (63)  [1/2] 2.33ns  loc: kernel3.cpp:40
+_ifconv:7  %weight3 = load float* %weight_addr_3, align 4
+
+ST_18: tmp_13 (67)  [1/1] 0.00ns  loc: kernel3.cpp:53
+_ifconv:11  %tmp_13 = sext i32 %index3 to i64
+
+ST_18: hist_addr_5 (68)  [1/1] 0.00ns  loc: kernel3.cpp:53
+_ifconv:12  %hist_addr_5 = getelementptr [1024 x float]* %hist, i64 0, i64 %tmp_13
+
+ST_18: hist_load_3 (69)  [2/2] 2.33ns  loc: kernel3.cpp:53
+_ifconv:13  %hist_load_3 = load float* %hist_addr_5, align 4
+
+
+ <State 19>: 3.33ns
+ST_19: hist0_1 (47)  [1/1] 0.00ns
+.preheader:1  %hist0_1 = phi float [ %hist1_1, %._crit_edge3 ], [ %hist1, %_ifconv36 ]
+
+ST_19: index5 (48)  [1/1] 0.00ns
+.preheader:2  %index5 = phi i32 [ %index3, %._crit_edge3 ], [ %index2, %_ifconv36 ]
+
+ST_19: index1_1 (49)  [1/1] 0.00ns
+.preheader:3  %index1_1 = phi i32 [ %index1_2, %._crit_edge3 ], [ %index1_1_ph, %_ifconv36 ]
+
+ST_19: index0_3 (50)  [1/1] 0.00ns
+.preheader:4  %index0_3 = phi i32 [ %index0_1, %._crit_edge3 ], [ %index0_3_ph, %_ifconv36 ]
+
+ST_19: hist1_1 (51)  [1/1] 0.00ns
+.preheader:5  %hist1_1 = phi float [ %hist3, %._crit_edge3 ], [ %hist2, %_ifconv36 ]
+
+ST_19: tmp_5 (64)  [1/1] 1.65ns  loc: kernel3.cpp:43
+_ifconv:8  %tmp_5 = icmp eq i32 %index3, %index5
+
+ST_19: tmp_9 (65)  [1/1] 1.65ns  loc: kernel3.cpp:46
+_ifconv:9  %tmp_9 = icmp eq i32 %index3, %index1_1
+
+ST_19: tmp_11 (66)  [1/1] 1.65ns  loc: kernel3.cpp:49
+_ifconv:10  %tmp_11 = icmp eq i32 %index3, %index0_3
+
+ST_19: hist_load_3 (69)  [1/2] 2.33ns  loc: kernel3.cpp:53
+_ifconv:13  %hist_load_3 = load float* %hist_addr_5, align 4
+
+ST_19: sel_tmp1 (70)  [1/1] 0.00ns  loc: kernel3.cpp:43 (grouped into LUT with out node sel_tmp2)
+_ifconv:14  %sel_tmp1 = xor i1 %tmp_5, true
+
+ST_19: sel_tmp2 (71)  [1/1] 0.84ns  loc: kernel3.cpp:46 (out node of the LUT)
+_ifconv:15  %sel_tmp2 = and i1 %tmp_9, %sel_tmp1
+
+ST_19: sel_tmp6_demorgan (72)  [1/1] 0.00ns  loc: kernel3.cpp:43 (grouped into LUT with out node sel_tmp7)
+_ifconv:16  %sel_tmp6_demorgan = or i1 %tmp_5, %tmp_9
+
+ST_19: sel_tmp6 (73)  [1/1] 0.00ns  loc: kernel3.cpp:43 (grouped into LUT with out node sel_tmp7)
+_ifconv:17  %sel_tmp6 = xor i1 %sel_tmp6_demorgan, true
+
+ST_19: sel_tmp7 (74)  [1/1] 0.84ns  loc: kernel3.cpp:49 (out node of the LUT)
+_ifconv:18  %sel_tmp7 = and i1 %tmp_11, %sel_tmp6
+
+ST_19: or_cond (75)  [1/1] 0.00ns  loc: kernel3.cpp:63 (grouped into LUT with out node index1_2)
+_ifconv:19  %or_cond = or i1 %sel_tmp7, %sel_tmp2
+
+ST_19: newSel (76)  [1/1] 0.00ns  loc: kernel3.cpp:43 (grouped into LUT with out node index1_2)
+_ifconv:20  %newSel = select i1 %tmp_5, i32 -1, i32 %index5
+
+ST_19: index1_2 (77)  [1/1] 0.84ns  loc: kernel3.cpp:63 (out node of the LUT)
+_ifconv:21  %index1_2 = select i1 %or_cond, i32 %index5, i32 %newSel
+
+ST_19: sel_tmp5 (78)  [1/1] 0.00ns  loc: kernel3.cpp:62 (grouped into LUT with out node index0_1)
+_ifconv:22  %sel_tmp5 = select i1 %sel_tmp2, i32 -1, i32 %index1_1
+
+ST_19: index0_1 (79)  [1/1] 0.84ns  loc: kernel3.cpp:62 (out node of the LUT)
+_ifconv:23  %index0_1 = select i1 %sel_tmp7, i32 %index1_1, i32 %sel_tmp5
+
+ST_19: sel_tmp8 (81)  [1/1] 0.00ns  loc: kernel3.cpp:43 (grouped into LUT with out node sel_tmp9)
+_ifconv:25  %sel_tmp8 = select i1 %tmp_5, float %hist1_1, float %hist_load_3
+
+ST_19: sel_tmp9 (82)  [1/1] 0.84ns  loc: kernel3.cpp:46 (out node of the LUT)
+_ifconv:26  %sel_tmp9 = select i1 %sel_tmp2, float %hist0_1, float %sel_tmp8
+
+
+ <State 20>: 8.56ns
+ST_20: hist5 (46)  [1/1] 0.00ns
+.preheader:0  %hist5 = phi float [ %hist0_1, %._crit_edge3 ], [ %hist0, %_ifconv36 ]
+
+ST_20: StgValue_121 (54)  [1/1] 0.00ns  loc: kernel3.cpp:36
+.preheader:8  br i1 %exitcond, label %1, label %_ifconv
+
+ST_20: index0_6 (80)  [1/1] 0.84ns  loc: kernel3.cpp:49
+_ifconv:24  %index0_6 = select i1 %sel_tmp7, i32 -1, i32 %index0_3
+
+ST_20: hist2_2_pn (83)  [1/1] 0.84ns  loc: kernel3.cpp:49 (out node of the LUT)
+_ifconv:27  %hist2_2_pn = select i1 %sel_tmp7, float %hist5, float %sel_tmp9
+
+ST_20: hist3 (84)  [4/4] 7.72ns  loc: kernel3.cpp:45
+_ifconv:28  %hist3 = fadd float %hist2_2_pn, %weight3
+
+ST_20: tmp_15 (85)  [1/1] 1.65ns  loc: kernel3.cpp:57
+_ifconv:29  %tmp_15 = icmp eq i32 %index0_6, -1
+
+ST_20: StgValue_126 (86)  [1/1] 0.00ns  loc: kernel3.cpp:57
+_ifconv:30  br i1 %tmp_15, label %._crit_edge3, label %0
+
+ST_20: tmp_17 (88)  [1/1] 0.00ns  loc: kernel3.cpp:58
+:0  %tmp_17 = sext i32 %index0_6 to i64
+
+ST_20: hist_addr_7 (89)  [1/1] 0.00ns  loc: kernel3.cpp:58
+:1  %hist_addr_7 = getelementptr [1024 x float]* %hist, i64 0, i64 %tmp_17
+
+ST_20: StgValue_129 (90)  [1/1] 2.33ns  loc: kernel3.cpp:58
+:2  store float %hist5, float* %hist_addr_7, align 4
+
+ST_20: StgValue_130 (91)  [1/1] 0.00ns  loc: kernel3.cpp:59
+:3  br label %._crit_edge3
+
+
+ <State 21>: 7.72ns
+ST_21: hist3 (84)  [3/4] 7.72ns  loc: kernel3.cpp:45
+_ifconv:28  %hist3 = fadd float %hist2_2_pn, %weight3
+
+
+ <State 22>: 7.72ns
+ST_22: hist3 (84)  [2/4] 7.72ns  loc: kernel3.cpp:45
+_ifconv:28  %hist3 = fadd float %hist2_2_pn, %weight3
+
+
+ <State 23>: 7.72ns
+ST_23: empty (56)  [1/1] 0.00ns
+_ifconv:0  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1021, i64 1021, i64 1021) nounwind
+
+ST_23: tmp_18 (57)  [1/1] 0.00ns  loc: kernel3.cpp:36
+_ifconv:1  %tmp_18 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str) nounwind
+
+ST_23: StgValue_135 (58)  [1/1] 0.00ns  loc: kernel3.cpp:38
+_ifconv:2  call void (...)* @_ssdm_op_SpecPipeline(i32 4, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_23: hist3 (84)  [1/4] 7.72ns  loc: kernel3.cpp:45
+_ifconv:28  %hist3 = fadd float %hist2_2_pn, %weight3
+
+ST_23: empty_2 (93)  [1/1] 0.00ns  loc: kernel3.cpp:69
+._crit_edge3:0  %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str, i32 %tmp_18) nounwind
+
+ST_23: StgValue_138 (95)  [1/1] 0.00ns  loc: kernel3.cpp:36
+._crit_edge3:2  br label %.preheader
+
+
+ <State 24>: 2.33ns
+ST_24: tmp_1 (97)  [1/1] 1.65ns  loc: kernel3.cpp:72
+:0  %tmp_1 = icmp eq i32 %index0_3, -1
+
+ST_24: StgValue_140 (98)  [1/1] 0.00ns  loc: kernel3.cpp:72
+:1  br i1 %tmp_1, label %._crit_edge4, label %2
+
+ST_24: tmp_7 (100)  [1/1] 0.00ns  loc: kernel3.cpp:73
+:0  %tmp_7 = sext i32 %index0_3 to i64
+
+ST_24: hist_addr_3 (101)  [1/1] 0.00ns  loc: kernel3.cpp:73
+:1  %hist_addr_3 = getelementptr [1024 x float]* %hist, i64 0, i64 %tmp_7
+
+ST_24: StgValue_143 (102)  [1/1] 2.33ns  loc: kernel3.cpp:73
+:2  store float %hist5, float* %hist_addr_3, align 4
+
+ST_24: StgValue_144 (103)  [1/1] 0.00ns  loc: kernel3.cpp:74
+:3  br label %._crit_edge4
+
+ST_24: tmp_10 (105)  [1/1] 1.65ns  loc: kernel3.cpp:75
+._crit_edge4:0  %tmp_10 = icmp eq i32 %index1_1, -1
+
+ST_24: StgValue_146 (106)  [1/1] 0.00ns  loc: kernel3.cpp:75
+._crit_edge4:1  br i1 %tmp_10, label %._crit_edge5, label %3
+
+
+ <State 25>: 2.33ns
+ST_25: tmp_12 (108)  [1/1] 0.00ns  loc: kernel3.cpp:76
+:0  %tmp_12 = sext i32 %index1_1 to i64
+
+ST_25: hist_addr_4 (109)  [1/1] 0.00ns  loc: kernel3.cpp:76
+:1  %hist_addr_4 = getelementptr [1024 x float]* %hist, i64 0, i64 %tmp_12
+
+ST_25: StgValue_149 (110)  [1/1] 2.33ns  loc: kernel3.cpp:76
+:2  store float %hist0_1, float* %hist_addr_4, align 4
+
+ST_25: StgValue_150 (111)  [1/1] 0.00ns  loc: kernel3.cpp:77
+:3  br label %._crit_edge5
+
+ST_25: tmp_14 (113)  [1/1] 1.65ns  loc: kernel3.cpp:78
+._crit_edge5:0  %tmp_14 = icmp eq i32 %index5, -1
+
+ST_25: StgValue_152 (114)  [1/1] 0.00ns  loc: kernel3.cpp:78
+._crit_edge5:1  br i1 %tmp_14, label %._crit_edge6, label %4
+
+
+ <State 26>: 2.33ns
+ST_26: tmp_16 (116)  [1/1] 0.00ns  loc: kernel3.cpp:79
+:0  %tmp_16 = sext i32 %index5 to i64
+
+ST_26: hist_addr_6 (117)  [1/1] 0.00ns  loc: kernel3.cpp:79
+:1  %hist_addr_6 = getelementptr [1024 x float]* %hist, i64 0, i64 %tmp_16
+
+ST_26: StgValue_155 (118)  [1/1] 2.33ns  loc: kernel3.cpp:79
+:2  store float %hist1_1, float* %hist_addr_6, align 4
+
+ST_26: StgValue_156 (119)  [1/1] 0.00ns  loc: kernel3.cpp:80
+:3  br label %._crit_edge6
+
+ST_26: StgValue_157 (121)  [1/1] 0.00ns  loc: kernel3.cpp:81
+._crit_edge6:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 2.33ns
+The critical path consists of the following:
+	'getelementptr' operation ('index_addr') [7]  (0 ns)
+	'load' operation ('index0', kernel3.cpp:10) on array 'index' [10]  (2.33 ns)
+
+ <State 2>: 4.66ns
+The critical path consists of the following:
+	'load' operation ('index0', kernel3.cpp:10) on array 'index' [10]  (2.33 ns)
+	'getelementptr' operation ('hist_addr', kernel3.cpp:15) [16]  (0 ns)
+	'load' operation ('hist_load', kernel3.cpp:15) on array 'hist' [17]  (2.33 ns)
+
+ <State 3>: 2.33ns
+The critical path consists of the following:
+	'load' operation ('hist_load', kernel3.cpp:15) on array 'hist' [17]  (2.33 ns)
+
+ <State 4>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist0', kernel3.cpp:15) [19]  (7.72 ns)
+
+ <State 5>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist0', kernel3.cpp:15) [19]  (7.72 ns)
+
+ <State 6>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist0', kernel3.cpp:15) [19]  (7.72 ns)
+
+ <State 7>: 8.56ns
+The critical path consists of the following:
+	'fadd' operation ('hist0', kernel3.cpp:15) [19]  (7.72 ns)
+	'select' operation ('hist4_v', kernel3.cpp:18) [26]  (0.84 ns)
+
+ <State 8>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist1', kernel3.cpp:18) [27]  (7.72 ns)
+
+ <State 9>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist1', kernel3.cpp:18) [27]  (7.72 ns)
+
+ <State 10>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist1', kernel3.cpp:18) [27]  (7.72 ns)
+
+ <State 11>: 8.56ns
+The critical path consists of the following:
+	'fadd' operation ('hist1', kernel3.cpp:18) [27]  (7.72 ns)
+	'select' operation ('hist1_2_ph_v', kernel3.cpp:26) [42]  (0.84 ns)
+
+ <State 12>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist2', kernel3.cpp:26) [43]  (7.72 ns)
+
+ <State 13>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist2', kernel3.cpp:26) [43]  (7.72 ns)
+
+ <State 14>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist2', kernel3.cpp:26) [43]  (7.72 ns)
+
+ <State 15>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist2', kernel3.cpp:26) [43]  (7.72 ns)
+
+ <State 16>: 1.08ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('hist0') with incoming values : ('hist0', kernel3.cpp:15) ('hist1', kernel3.cpp:18) ('hist2', kernel3.cpp:26) ('hist3', kernel3.cpp:45) [46]  (1.08 ns)
+
+ <State 17>: 2.33ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', kernel3.cpp:36) [52]  (0 ns)
+	'getelementptr' operation ('index_addr_3', kernel3.cpp:39) [60]  (0 ns)
+	'load' operation ('index3', kernel3.cpp:39) on array 'index' [61]  (2.33 ns)
+
+ <State 18>: 4.66ns
+The critical path consists of the following:
+	'load' operation ('index3', kernel3.cpp:39) on array 'index' [61]  (2.33 ns)
+	'getelementptr' operation ('hist_addr_5', kernel3.cpp:53) [68]  (0 ns)
+	'load' operation ('hist_load_3', kernel3.cpp:53) on array 'hist' [69]  (2.33 ns)
+
+ <State 19>: 3.33ns
+The critical path consists of the following:
+	'phi' operation ('index2') with incoming values : ('index2', kernel3.cpp:12) ('index3', kernel3.cpp:39) [48]  (0 ns)
+	'icmp' operation ('tmp_5', kernel3.cpp:43) [64]  (1.65 ns)
+	'xor' operation ('sel_tmp1', kernel3.cpp:43) [70]  (0 ns)
+	'and' operation ('sel_tmp2', kernel3.cpp:46) [71]  (0.84 ns)
+	'or' operation ('or_cond', kernel3.cpp:63) [75]  (0 ns)
+	'select' operation ('index1', kernel3.cpp:63) [77]  (0.84 ns)
+
+ <State 20>: 8.56ns
+The critical path consists of the following:
+	'phi' operation ('hist0') with incoming values : ('hist0', kernel3.cpp:15) ('hist1', kernel3.cpp:18) ('hist2', kernel3.cpp:26) ('hist3', kernel3.cpp:45) [46]  (0 ns)
+	'select' operation ('hist2_2_pn', kernel3.cpp:49) [83]  (0.84 ns)
+	'fadd' operation ('hist3', kernel3.cpp:45) [84]  (7.72 ns)
+
+ <State 21>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist3', kernel3.cpp:45) [84]  (7.72 ns)
+
+ <State 22>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist3', kernel3.cpp:45) [84]  (7.72 ns)
+
+ <State 23>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('hist3', kernel3.cpp:45) [84]  (7.72 ns)
+
+ <State 24>: 2.33ns
+The critical path consists of the following:
+	'getelementptr' operation ('hist_addr_3', kernel3.cpp:73) [101]  (0 ns)
+	'store' operation (kernel3.cpp:73) of variable 'hist0' on array 'hist' [102]  (2.33 ns)
+
+ <State 25>: 2.33ns
+The critical path consists of the following:
+	'getelementptr' operation ('hist_addr_4', kernel3.cpp:76) [109]  (0 ns)
+	'store' operation (kernel3.cpp:76) of variable 'hist1' on array 'hist' [110]  (2.33 ns)
+
+ <State 26>: 2.33ns
+The critical path consists of the following:
+	'getelementptr' operation ('hist_addr_6', kernel3.cpp:79) [117]  (0 ns)
+	'store' operation (kernel3.cpp:79) of variable 'hist2' on array 'hist' [118]  (2.33 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

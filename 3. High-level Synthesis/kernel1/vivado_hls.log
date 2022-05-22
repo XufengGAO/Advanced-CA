@@ -1,0 +1,49 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'cs470' on host 'cs470-VirtualBox' (Linux_x86_64 version 4.15.0-142-generic) on Sun May 22 21:59:32 CEST 2022
+INFO: [HLS 200-10] On os Ubuntu 16.04.7 LTS
+INFO: [HLS 200-10] In directory '/home/cs470/Downloads/hw3-kernels/kernel1'
+INFO: [HLS 200-10] Opening project '/home/cs470/Downloads/hw3-kernels/kernel1/prj_kernel1'.
+INFO: [HLS 200-10] Adding design file 'kernel1.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file 'kernel1_test.cpp' to the project
+INFO: [HLS 200-10] Opening solution '/home/cs470/Downloads/hw3-kernels/kernel1/prj_kernel1/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7k160tfbg484-1'
+INFO: [HLS 200-10] Analyzing design file 'kernel1.cpp' ... 
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 325.164 ; gain = 12.586 ; free physical = 97 ; free virtual = 317
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.164 ; gain = 12.586 ; free physical = 93 ; free virtual = 317
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.164 ; gain = 12.586 ; free physical = 86 ; free virtual = 316
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.164 ; gain = 12.586 ; free physical = 86 ; free virtual = 316
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 453.160 ; gain = 140.582 ; free physical = 64 ; free virtual = 297
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 453.160 ; gain = 140.582 ; free physical = 71 ; free virtual = 305
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel1' ...
+WARNING: [SYN 201-107] Renaming port name 'kernel1/array' to 'kernel1/array_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 3.15 seconds; current allocated memory: 55.451 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.02 seconds; current allocated memory: 55.577 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel1/array_r' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel1' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel1'.
+INFO: [HLS 200-111]  Elapsed time: 0.06 seconds; current allocated memory: 55.790 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 453.160 ; gain = 140.582 ; free physical = 86 ; free virtual = 301
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel1.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel1.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel1.
+INFO: [HLS 200-112] Total elapsed time: 3.45 seconds; peak allocated memory: 55.790 MB.

@@ -1,0 +1,315 @@
+
+
+================================================================
+== Vivado HLS Report for 'kernel5'
+================================================================
+* Date:           Sun May 22 23:38:40 2022
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        prj_kernel5
+* Solution:       solution1
+* Product family: kintex7
+* Target device:  xc7k160tfbg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      7.72|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |    ?|    ?|         6|          1|          1|     ?|    yes   |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 6
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 8
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 6, States = { 2 3 4 5 6 7 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	8  / (!tmp_2)
+	3  / (tmp_2)
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	2  / true
+8 --> 
+* FSM state operations: 
+
+ <State 1>: 2.44ns
+ST_1: StgValue_9 (4)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap(float %bound) nounwind, !map !7
+
+ST_1: StgValue_10 (5)  [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap([1024 x float]* %a) nounwind, !map !13
+
+ST_1: StgValue_11 (6)  [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap([1024 x float]* %b) nounwind, !map !19
+
+ST_1: StgValue_12 (7)  [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecBitsMap(float 0.000000e+00) nounwind, !map !23
+
+ST_1: StgValue_13 (8)  [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecTopModule([8 x i8]* @kernel5_str) nounwind
+
+ST_1: bound_read (9)  [1/1] 0.00ns
+:5  %bound_read = call float @_ssdm_op_Read.ap_auto.float(float %bound) nounwind
+
+ST_1: bound_to_int (10)  [1/1] 0.00ns
+:6  %bound_to_int = bitcast float %bound_read to i32
+
+ST_1: tmp_6 (11)  [1/1] 0.00ns
+:7  %tmp_6 = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %bound_to_int, i32 23, i32 30)
+
+ST_1: tmp_1 (12)  [1/1] 0.00ns
+:8  %tmp_1 = trunc i32 %bound_to_int to i23
+
+ST_1: notlhs1 (13)  [1/1] 1.38ns
+:9  %notlhs1 = icmp ne i8 %tmp_6, -1
+
+ST_1: notrhs2 (14)  [1/1] 1.60ns
+:10  %notrhs2 = icmp eq i23 %tmp_1, 0
+
+ST_1: tmp_9 (15)  [1/1] 0.84ns
+:11  %tmp_9 = or i1 %notrhs2, %notlhs1
+
+ST_1: StgValue_21 (16)  [1/1] 1.08ns  loc: kernel5.cpp:7
+:12  br label %1
+
+
+ <State 2>: 5.03ns
+ST_2: i (18)  [1/1] 0.00ns
+:0  %i = phi i32 [ 0, %0 ], [ %i_1, %2 ]
+
+ST_2: sum_s (19)  [1/1] 0.00ns
+:1  %sum_s = phi float [ undef, %0 ], [ %sum, %2 ]
+
+ST_2: sum_to_int (20)  [1/1] 0.00ns  loc: kernel5.cpp:11
+:2  %sum_to_int = bitcast float %sum_s to i32
+
+ST_2: tmp (21)  [1/1] 0.00ns  loc: kernel5.cpp:11
+:3  %tmp = call i8 @_ssdm_op_PartSelect.i8.i32.i32.i32(i32 %sum_to_int, i32 23, i32 30)
+
+ST_2: tmp_5 (22)  [1/1] 0.00ns  loc: kernel5.cpp:11
+:4  %tmp_5 = trunc i32 %sum_to_int to i23
+
+ST_2: notlhs (23)  [1/1] 1.38ns  loc: kernel5.cpp:11
+:5  %notlhs = icmp ne i8 %tmp, -1
+
+ST_2: notrhs (24)  [1/1] 1.60ns  loc: kernel5.cpp:11
+:6  %notrhs = icmp eq i23 %tmp_5, 0
+
+ST_2: tmp_8 (25)  [1/1] 0.00ns  loc: kernel5.cpp:11 (grouped into LUT with out node tmp_2)
+:7  %tmp_8 = or i1 %notrhs, %notlhs
+
+ST_2: tmp_s (26)  [1/1] 0.00ns  loc: kernel5.cpp:11 (grouped into LUT with out node tmp_2)
+:8  %tmp_s = and i1 %tmp_8, %tmp_9
+
+ST_2: tmp_7 (27)  [1/1] 4.19ns  loc: kernel5.cpp:7
+:9  %tmp_7 = fcmp olt float %sum_s, %bound_read
+
+ST_2: tmp_10 (28)  [1/1] 0.00ns  loc: kernel5.cpp:7 (grouped into LUT with out node tmp_2)
+:10  %tmp_10 = and i1 %tmp_s, %tmp_7
+
+ST_2: tmp_11 (29)  [1/1] 0.00ns  loc: kernel5.cpp:7
+:11  %tmp_11 = call i22 @_ssdm_op_PartSelect.i22.i32.i32.i32(i32 %i, i32 10, i32 31)
+
+ST_2: icmp (30)  [1/1] 1.59ns  loc: kernel5.cpp:7
+:12  %icmp = icmp slt i22 %tmp_11, 1
+
+ST_2: tmp_2 (31)  [1/1] 0.84ns  loc: kernel5.cpp:7 (out node of the LUT)
+:13  %tmp_2 = and i1 %tmp_10, %icmp
+
+ST_2: i_1 (32)  [1/1] 1.70ns  loc: kernel5.cpp:12
+:14  %i_1 = add nsw i32 1, %i
+
+ST_2: StgValue_37 (33)  [1/1] 0.00ns  loc: kernel5.cpp:7
+:15  br i1 %tmp_2, label %2, label %3
+
+ST_2: tmp_3 (37)  [1/1] 0.00ns  loc: kernel5.cpp:11
+:2  %tmp_3 = sext i32 %i to i64
+
+ST_2: a_addr (38)  [1/1] 0.00ns  loc: kernel5.cpp:11
+:3  %a_addr = getelementptr [1024 x float]* %a, i64 0, i64 %tmp_3
+
+ST_2: a_load (39)  [2/2] 2.33ns  loc: kernel5.cpp:11
+:4  %a_load = load float* %a_addr, align 4
+
+ST_2: b_addr (40)  [1/1] 0.00ns  loc: kernel5.cpp:11
+:5  %b_addr = getelementptr [1024 x float]* %b, i64 0, i64 %tmp_3
+
+ST_2: b_load (41)  [2/2] 2.33ns  loc: kernel5.cpp:11
+:6  %b_load = load float* %b_addr, align 4
+
+
+ <State 3>: 2.33ns
+ST_3: a_load (39)  [1/2] 2.33ns  loc: kernel5.cpp:11
+:4  %a_load = load float* %a_addr, align 4
+
+ST_3: b_load (41)  [1/2] 2.33ns  loc: kernel5.cpp:11
+:6  %b_load = load float* %b_addr, align 4
+
+
+ <State 4>: 7.72ns
+ST_4: sum (42)  [4/4] 7.72ns  loc: kernel5.cpp:11
+:7  %sum = fadd float %a_load, %b_load
+
+
+ <State 5>: 7.72ns
+ST_5: sum (42)  [3/4] 7.72ns  loc: kernel5.cpp:11
+:7  %sum = fadd float %a_load, %b_load
+
+
+ <State 6>: 7.72ns
+ST_6: sum (42)  [2/4] 7.72ns  loc: kernel5.cpp:11
+:7  %sum = fadd float %a_load, %b_load
+
+
+ <State 7>: 7.72ns
+ST_7: tmp_4 (35)  [1/1] 0.00ns  loc: kernel5.cpp:8
+:0  %tmp_4 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str) nounwind
+
+ST_7: StgValue_49 (36)  [1/1] 0.00ns  loc: kernel5.cpp:10
+:1  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_7: sum (42)  [1/4] 7.72ns  loc: kernel5.cpp:11
+:7  %sum = fadd float %a_load, %b_load
+
+ST_7: empty (43)  [1/1] 0.00ns  loc: kernel5.cpp:13
+:8  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str, i32 %tmp_4) nounwind
+
+ST_7: StgValue_52 (44)  [1/1] 0.00ns  loc: kernel5.cpp:13
+:9  br label %1
+
+
+ <State 8>: 0.00ns
+ST_8: StgValue_53 (46)  [1/1] 0.00ns  loc: kernel5.cpp:14
+:0  ret float %sum_s
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 2.44ns
+The critical path consists of the following:
+	wire read on port 'bound' [9]  (0 ns)
+	'icmp' operation ('notrhs2') [14]  (1.6 ns)
+	'or' operation ('tmp_9') [15]  (0.84 ns)
+
+ <State 2>: 5.03ns
+The critical path consists of the following:
+	'phi' operation ('sum') with incoming values : ('sum', kernel5.cpp:11) [19]  (0 ns)
+	'fcmp' operation ('tmp_7', kernel5.cpp:7) [27]  (4.19 ns)
+	'and' operation ('tmp_10', kernel5.cpp:7) [28]  (0 ns)
+	'and' operation ('tmp_2', kernel5.cpp:7) [31]  (0.84 ns)
+
+ <State 3>: 2.33ns
+The critical path consists of the following:
+	'load' operation ('a_load', kernel5.cpp:11) on array 'a' [39]  (2.33 ns)
+
+ <State 4>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('sum', kernel5.cpp:11) [42]  (7.72 ns)
+
+ <State 5>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('sum', kernel5.cpp:11) [42]  (7.72 ns)
+
+ <State 6>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('sum', kernel5.cpp:11) [42]  (7.72 ns)
+
+ <State 7>: 7.72ns
+The critical path consists of the following:
+	'fadd' operation ('sum', kernel5.cpp:11) [42]  (7.72 ns)
+
+ <State 8>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,203 @@
+
+
+================================================================
+== Vivado HLS Report for 'kernel1'
+================================================================
+* Date:           Sun May 22 21:59:35 2022
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        prj_kernel1
+* Solution:       solution1
+* Product family: kintex7
+* Target device:  xc7k160tfbg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      6.36|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +------+------+------+------+---------+
+    |   Latency   |   Interval  | Pipeline|
+    |  min |  max |  min |  max |   Type  |
+    +------+------+------+------+---------+
+    |  1026|  1026|  1027|  1027|   none  |
+    +------+------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+------+------+----------+-----------+-----------+------+----------+
+        |          |   Latency   | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|  min |  max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+------+------+----------+-----------+-----------+------+----------+
+        |- Loop 1  |  1024|  1024|         2|          1|          1|  1024|    yes   |
+        +----------+------+------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 4
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 2, States = { 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	4  / (exitcond)
+	3  / (!exitcond)
+3 --> 
+	2  / true
+4 --> 
+* FSM state operations: 
+
+ <State 1>: 1.08ns
+ST_1: StgValue_5 (2)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %array_r) nounwind, !map !7
+
+ST_1: StgValue_6 (3)  [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecTopModule([8 x i8]* @kernel1_str) nounwind
+
+ST_1: StgValue_7 (4)  [1/1] 1.08ns  loc: kernel1.cpp:6
+:2  br label %1
+
+
+ <State 2>: 2.33ns
+ST_2: i (6)  [1/1] 0.00ns
+:0  %i = phi i11 [ 0, %0 ], [ %i_1, %2 ]
+
+ST_2: exitcond (7)  [1/1] 1.45ns  loc: kernel1.cpp:6
+:1  %exitcond = icmp eq i11 %i, -1024
+
+ST_2: i_1 (8)  [1/1] 1.40ns  loc: kernel1.cpp:6
+:2  %i_1 = add i11 %i, 1
+
+ST_2: StgValue_11 (9)  [1/1] 0.00ns  loc: kernel1.cpp:6
+:3  br i1 %exitcond, label %3, label %2
+
+ST_2: tmp (14)  [1/1] 0.00ns  loc: kernel1.cpp:8
+:3  %tmp = zext i11 %i to i64
+
+ST_2: array_addr (15)  [1/1] 0.00ns  loc: kernel1.cpp:8
+:4  %array_addr = getelementptr [1024 x i32]* %array_r, i64 0, i64 %tmp
+
+ST_2: array_load (16)  [2/2] 2.33ns  loc: kernel1.cpp:8
+:5  %array_load = load i32* %array_addr, align 4
+
+
+ <State 3>: 6.36ns
+ST_3: empty (11)  [1/1] 0.00ns
+:0  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1024, i64 1024, i64 1024) nounwind
+
+ST_3: tmp_2 (12)  [1/1] 0.00ns  loc: kernel1.cpp:8
+:1  %tmp_2 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str) nounwind
+
+ST_3: StgValue_17 (13)  [1/1] 0.00ns  loc: kernel1.cpp:7
+:2  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_3: array_load (16)  [1/2] 2.33ns  loc: kernel1.cpp:8
+:5  %array_load = load i32* %array_addr, align 4
+
+ST_3: tmp_3 (17)  [1/1] 0.00ns  loc: kernel1.cpp:8 (grouped into LUT with out node tmp_1)
+:6  %tmp_3 = shl i32 %array_load, 2
+
+ST_3: tmp_1 (18)  [1/1] 1.70ns  loc: kernel1.cpp:8 (out node of the LUT)
+:7  %tmp_1 = add i32 %array_load, %tmp_3
+
+ST_3: StgValue_21 (19)  [1/1] 2.33ns  loc: kernel1.cpp:8
+:8  store i32 %tmp_1, i32* %array_addr, align 4
+
+ST_3: empty_2 (20)  [1/1] 0.00ns  loc: kernel1.cpp:8
+:9  %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str, i32 %tmp_2) nounwind
+
+ST_3: StgValue_23 (21)  [1/1] 0.00ns  loc: kernel1.cpp:6
+:10  br label %1
+
+
+ <State 4>: 0.00ns
+ST_4: StgValue_24 (23)  [1/1] 0.00ns  loc: kernel1.cpp:9
+:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.08ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', kernel1.cpp:6) [6]  (1.08 ns)
+
+ <State 2>: 2.33ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', kernel1.cpp:6) [6]  (0 ns)
+	'getelementptr' operation ('array_addr', kernel1.cpp:8) [15]  (0 ns)
+	'load' operation ('array_load', kernel1.cpp:8) on array 'array_r' [16]  (2.33 ns)
+
+ <State 3>: 6.36ns
+The critical path consists of the following:
+	'load' operation ('array_load', kernel1.cpp:8) on array 'array_r' [16]  (2.33 ns)
+	'add' operation ('tmp_1', kernel1.cpp:8) [18]  (1.7 ns)
+	'store' operation (kernel1.cpp:8) of variable 'tmp_1', kernel1.cpp:8 on array 'array_r' [19]  (2.33 ns)
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

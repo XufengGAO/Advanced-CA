@@ -1,0 +1,54 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'cs470' on host 'cs470-VirtualBox' (Linux_x86_64 version 4.15.0-142-generic) on Sun May 22 23:25:45 CEST 2022
+INFO: [HLS 200-10] On os Ubuntu 16.04.7 LTS
+INFO: [HLS 200-10] In directory '/home/cs470/Downloads/hw3-kernels/kernel4'
+INFO: [HLS 200-10] Opening project '/home/cs470/Downloads/hw3-kernels/kernel4/prj_kernel4'.
+INFO: [HLS 200-10] Adding design file 'kernel4.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file 'kernel4_test.cpp' to the project
+INFO: [HLS 200-10] Opening solution '/home/cs470/Downloads/hw3-kernels/kernel4/prj_kernel4/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7k160tfbg484-1'
+INFO: [HLS 200-10] Analyzing design file 'kernel4.cpp' ... 
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.164 ; gain = 12.586 ; free physical = 96 ; free virtual = 217
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.164 ; gain = 12.586 ; free physical = 92 ; free virtual = 217
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.164 ; gain = 12.586 ; free physical = 84 ; free virtual = 216
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.164 ; gain = 12.586 ; free physical = 84 ; free virtual = 216
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 453.160 ; gain = 140.582 ; free physical = 63 ; free virtual = 196
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 453.160 ; gain = 140.582 ; free physical = 70 ; free virtual = 204
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel4' ...
+WARNING: [SYN 201-107] Renaming port name 'kernel4/array' to 'kernel4/array_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 1, Final II: 1, Depth: 7.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 3.6 seconds; current allocated memory: 55.749 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.01 seconds; current allocated memory: 55.958 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel4/array_r' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel4/index' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel4/offset' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel4' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'kernel4_mul_32s_32s_32_6' to 'kernel4_mul_32s_3bkb' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'kernel4_mul_32s_3bkb': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel4'.
+INFO: [HLS 200-111]  Elapsed time: 0.07 seconds; current allocated memory: 56.323 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'kernel4_mul_32s_3bkb_MulnS_0'
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:02 ; elapsed = 00:00:04 . Memory (MB): peak = 453.160 ; gain = 140.582 ; free physical = 72 ; free virtual = 201
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel4.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel4.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel4.
+INFO: [HLS 200-112] Total elapsed time: 3.97 seconds; peak allocated memory: 56.323 MB.

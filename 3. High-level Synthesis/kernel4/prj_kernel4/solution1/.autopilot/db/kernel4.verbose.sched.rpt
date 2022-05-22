@@ -1,0 +1,344 @@
+
+
+================================================================
+== Vivado HLS Report for 'kernel4'
+================================================================
+* Date:           Sun May 22 23:25:48 2022
+
+* Version:        2016.4 (Build 1756540 on Mon Jan 23 19:31:01 MST 2017)
+* Project:        prj_kernel4
+* Solution:       solution1
+* Product family: kintex7
+* Target device:  xc7k160tfbg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.32|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |    ?|    ?|         7|          1|          1|     ?|    yes   |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 7
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 10
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 7, States = { 3 4 5 6 7 8 9 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	10  / (!tmp_1)
+	4  / (tmp_1)
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	3  / true
+10 --> 
+* FSM state operations: 
+
+ <State 1>: 2.33ns
+ST_1: offset_read (8)  [1/1] 0.00ns
+:4  %offset_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %offset) nounwind
+
+ST_1: tmp (9)  [1/1] 0.00ns  loc: kernel4.cpp:6
+:5  %tmp = sext i32 %offset_read to i64
+
+ST_1: array_addr (10)  [1/1] 0.00ns  loc: kernel4.cpp:6
+:6  %array_addr = getelementptr [1024 x i32]* %array_r, i64 0, i64 %tmp
+
+ST_1: sum (11)  [2/2] 2.33ns  loc: kernel4.cpp:6
+:7  %sum = load i32* %array_addr, align 4
+
+
+ <State 2>: 3.42ns
+ST_2: StgValue_15 (4)  [1/1] 0.00ns
+:0  call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %array_r) nounwind, !map !7
+
+ST_2: StgValue_16 (5)  [1/1] 0.00ns
+:1  call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %index) nounwind, !map !13
+
+ST_2: StgValue_17 (6)  [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap(i32 %offset) nounwind, !map !17
+
+ST_2: StgValue_18 (7)  [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecTopModule([8 x i8]* @kernel4_str) nounwind
+
+ST_2: sum (11)  [1/2] 2.33ns  loc: kernel4.cpp:6
+:7  %sum = load i32* %array_addr, align 4
+
+ST_2: StgValue_20 (12)  [1/1] 1.08ns  loc: kernel4.cpp:8
+:8  br label %1
+
+
+ <State 3>: 4.03ns
+ST_3: sum1 (14)  [1/1] 0.00ns
+:0  %sum1 = phi i32 [ %sum, %0 ], [ %sum_1, %2 ]
+
+ST_3: i_0_in (15)  [1/1] 0.00ns
+:1  %i_0_in = phi i32 [ %offset_read, %0 ], [ %i, %2 ]
+
+ST_3: i (16)  [1/1] 1.70ns  loc: kernel4.cpp:8
+:2  %i = add nsw i32 %i_0_in, 1
+
+ST_3: tmp_1 (17)  [1/1] 1.65ns  loc: kernel4.cpp:8
+:3  %tmp_1 = icmp slt i32 %i, 1023
+
+ST_3: StgValue_25 (18)  [1/1] 0.00ns  loc: kernel4.cpp:8
+:4  br i1 %tmp_1, label %2, label %3
+
+ST_3: tmp_2 (22)  [1/1] 0.00ns  loc: kernel4.cpp:10
+:2  %tmp_2 = sext i32 %i to i64
+
+ST_3: index_addr (23)  [1/1] 0.00ns  loc: kernel4.cpp:10
+:3  %index_addr = getelementptr [1024 x i32]* %index, i64 0, i64 %tmp_2
+
+ST_3: index_load (24)  [2/2] 2.33ns  loc: kernel4.cpp:10
+:4  %index_load = load i32* %index_addr, align 4
+
+ST_3: array_addr_1 (25)  [1/1] 0.00ns  loc: kernel4.cpp:10
+:5  %array_addr_1 = getelementptr [1024 x i32]* %array_r, i64 0, i64 %tmp_2
+
+ST_3: array_load (26)  [2/2] 2.33ns  loc: kernel4.cpp:10
+:6  %array_load = load i32* %array_addr_1, align 4
+
+ST_3: tmp_4 (28)  [1/1] 1.70ns  loc: kernel4.cpp:10
+:8  %tmp_4 = add nsw i32 %i_0_in, 2
+
+ST_3: tmp_5 (29)  [1/1] 0.00ns  loc: kernel4.cpp:10
+:9  %tmp_5 = sext i32 %tmp_4 to i64
+
+ST_3: array_addr_2 (30)  [1/1] 0.00ns  loc: kernel4.cpp:10
+:10  %array_addr_2 = getelementptr [1024 x i32]* %array_r, i64 0, i64 %tmp_5
+
+ST_3: array_load_1 (31)  [2/2] 2.33ns  loc: kernel4.cpp:10
+:11  %array_load_1 = load i32* %array_addr_2, align 4
+
+
+ <State 4>: 7.77ns
+ST_4: index_load (24)  [1/2] 2.33ns  loc: kernel4.cpp:10
+:4  %index_load = load i32* %index_addr, align 4
+
+ST_4: array_load (26)  [1/2] 2.33ns  loc: kernel4.cpp:10
+:6  %array_load = load i32* %array_addr_1, align 4
+
+ST_4: tmp_3 (27)  [6/6] 5.44ns  loc: kernel4.cpp:10
+:7  %tmp_3 = mul nsw i32 %array_load, %index_load
+
+ST_4: array_load_1 (31)  [1/2] 2.33ns  loc: kernel4.cpp:10
+:11  %array_load_1 = load i32* %array_addr_2, align 4
+
+ST_4: tmp_6 (32)  [6/6] 5.44ns  loc: kernel4.cpp:10
+:12  %tmp_6 = mul nsw i32 %array_load_1, %index_load
+
+
+ <State 5>: 5.44ns
+ST_5: tmp_3 (27)  [5/6] 5.44ns  loc: kernel4.cpp:10
+:7  %tmp_3 = mul nsw i32 %array_load, %index_load
+
+ST_5: tmp_6 (32)  [5/6] 5.44ns  loc: kernel4.cpp:10
+:12  %tmp_6 = mul nsw i32 %array_load_1, %index_load
+
+
+ <State 6>: 5.44ns
+ST_6: tmp_3 (27)  [4/6] 5.44ns  loc: kernel4.cpp:10
+:7  %tmp_3 = mul nsw i32 %array_load, %index_load
+
+ST_6: tmp_6 (32)  [4/6] 5.44ns  loc: kernel4.cpp:10
+:12  %tmp_6 = mul nsw i32 %array_load_1, %index_load
+
+
+ <State 7>: 5.44ns
+ST_7: tmp_3 (27)  [3/6] 5.44ns  loc: kernel4.cpp:10
+:7  %tmp_3 = mul nsw i32 %array_load, %index_load
+
+ST_7: tmp_6 (32)  [3/6] 5.44ns  loc: kernel4.cpp:10
+:12  %tmp_6 = mul nsw i32 %array_load_1, %index_load
+
+
+ <State 8>: 5.44ns
+ST_8: tmp_3 (27)  [2/6] 5.44ns  loc: kernel4.cpp:10
+:7  %tmp_3 = mul nsw i32 %array_load, %index_load
+
+ST_8: tmp_6 (32)  [2/6] 5.44ns  loc: kernel4.cpp:10
+:12  %tmp_6 = mul nsw i32 %array_load_1, %index_load
+
+
+ <State 9>: 8.32ns
+ST_9: tmp_8 (20)  [1/1] 0.00ns  loc: kernel4.cpp:8
+:0  %tmp_8 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str) nounwind
+
+ST_9: StgValue_49 (21)  [1/1] 0.00ns  loc: kernel4.cpp:9
+:1  call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_9: tmp_3 (27)  [1/6] 5.44ns  loc: kernel4.cpp:10
+:7  %tmp_3 = mul nsw i32 %array_load, %index_load
+
+ST_9: tmp_6 (32)  [1/6] 5.44ns  loc: kernel4.cpp:10
+:12  %tmp_6 = mul nsw i32 %array_load_1, %index_load
+
+ST_9: tmp_7 (33)  [1/1] 1.44ns  loc: kernel4.cpp:10
+:13  %tmp_7 = sub i32 %sum1, %tmp_3
+
+ST_9: sum_1 (34)  [1/1] 1.44ns  loc: kernel4.cpp:10
+:14  %sum_1 = add i32 %tmp_7, %tmp_6
+
+ST_9: empty (35)  [1/1] 0.00ns  loc: kernel4.cpp:11
+:15  %empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str, i32 %tmp_8) nounwind
+
+ST_9: StgValue_55 (36)  [1/1] 0.00ns  loc: kernel4.cpp:8
+:16  br label %1
+
+
+ <State 10>: 2.33ns
+ST_10: StgValue_56 (38)  [1/1] 2.33ns  loc: kernel4.cpp:13
+:0  store i32 %sum1, i32* %array_addr, align 4
+
+ST_10: StgValue_57 (39)  [1/1] 0.00ns  loc: kernel4.cpp:14
+:1  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 2.33ns
+The critical path consists of the following:
+	wire read on port 'offset' [8]  (0 ns)
+	'getelementptr' operation ('array_addr', kernel4.cpp:6) [10]  (0 ns)
+	'load' operation ('sum', kernel4.cpp:6) on array 'array_r' [11]  (2.33 ns)
+
+ <State 2>: 3.42ns
+The critical path consists of the following:
+	'load' operation ('sum', kernel4.cpp:6) on array 'array_r' [11]  (2.33 ns)
+	multiplexor before 'phi' operation ('sum') with incoming values : ('sum', kernel4.cpp:6) ('sum', kernel4.cpp:10) [14]  (1.08 ns)
+
+ <State 3>: 4.03ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('offset') ('i', kernel4.cpp:8) [15]  (0 ns)
+	'add' operation ('i', kernel4.cpp:8) [16]  (1.7 ns)
+	'getelementptr' operation ('index_addr', kernel4.cpp:10) [23]  (0 ns)
+	'load' operation ('index_load', kernel4.cpp:10) on array 'index' [24]  (2.33 ns)
+
+ <State 4>: 7.77ns
+The critical path consists of the following:
+	'load' operation ('index_load', kernel4.cpp:10) on array 'index' [24]  (2.33 ns)
+	'mul' operation ('tmp_3', kernel4.cpp:10) [27]  (5.44 ns)
+
+ <State 5>: 5.44ns
+The critical path consists of the following:
+	'mul' operation ('tmp_3', kernel4.cpp:10) [27]  (5.44 ns)
+
+ <State 6>: 5.44ns
+The critical path consists of the following:
+	'mul' operation ('tmp_3', kernel4.cpp:10) [27]  (5.44 ns)
+
+ <State 7>: 5.44ns
+The critical path consists of the following:
+	'mul' operation ('tmp_3', kernel4.cpp:10) [27]  (5.44 ns)
+
+ <State 8>: 5.44ns
+The critical path consists of the following:
+	'mul' operation ('tmp_3', kernel4.cpp:10) [27]  (5.44 ns)
+
+ <State 9>: 8.32ns
+The critical path consists of the following:
+	'mul' operation ('tmp_3', kernel4.cpp:10) [27]  (5.44 ns)
+	'sub' operation ('tmp_7', kernel4.cpp:10) [33]  (1.44 ns)
+	'add' operation ('sum', kernel4.cpp:10) [34]  (1.44 ns)
+
+ <State 10>: 2.33ns
+The critical path consists of the following:
+	'store' operation (kernel4.cpp:13) of variable 'sum' on array 'array_r' [38]  (2.33 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

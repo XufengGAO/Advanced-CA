@@ -1,0 +1,54 @@
+INFO: [HLS 200-10] Running '/opt/Xilinx/Vivado_HLS/2016.4/bin/unwrapped/lnx64.o/vivado_hls'
+INFO: [HLS 200-10] For user 'cs470' on host 'cs470-VirtualBox' (Linux_x86_64 version 4.15.0-142-generic) on Sun May 22 23:07:45 CEST 2022
+INFO: [HLS 200-10] On os Ubuntu 16.04.7 LTS
+INFO: [HLS 200-10] In directory '/home/cs470/Downloads/hw3-kernels/kernel3'
+INFO: [HLS 200-10] Opening project '/home/cs470/Downloads/hw3-kernels/kernel3/prj_kernel3'.
+INFO: [HLS 200-10] Adding design file 'kernel3.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file 'kernel3_test.cpp' to the project
+INFO: [HLS 200-10] Opening solution '/home/cs470/Downloads/hw3-kernels/kernel3/prj_kernel3/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7k160tfbg484-1'
+INFO: [HLS 200-10] Analyzing design file 'kernel3.cpp' ... 
+INFO: [HLS 200-10] Validating synthesis directives ...
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.160 ; gain = 12.586 ; free physical = 98 ; free virtual = 260
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.160 ; gain = 12.586 ; free physical = 93 ; free virtual = 260
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.160 ; gain = 12.586 ; free physical = 84 ; free virtual = 258
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 325.160 ; gain = 12.586 ; free physical = 84 ; free virtual = 259
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (kernel3.cpp:36:30) to (kernel3.cpp:57:6) in function 'kernel3'... converting 5 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (kernel3.cpp:36:14) in function 'kernel3'... converting 9 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 453.156 ; gain = 140.582 ; free physical = 77 ; free virtual = 239
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 453.156 ; gain = 140.582 ; free physical = 83 ; free virtual = 247
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'kernel3' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Implementing module 'kernel3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+INFO: [SCHED 204-61] Pipelining result: Target II: 4, Final II: 4, Depth: 7.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 3.43 seconds; current allocated memory: 56.738 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.13 seconds; current allocated memory: 57.214 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'kernel3' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel3/hist' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel3/weight' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'kernel3/index' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'kernel3' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'kernel3_fadd_32ns_32ns_32_4_full_dsp' to 'kernel3_fadd_32nsbkb' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'kernel3_fadd_32nsbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'kernel3'.
+INFO: [HLS 200-111]  Elapsed time: 0.14 seconds; current allocated memory: 57.971 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:02 ; elapsed = 00:00:04 . Memory (MB): peak = 453.156 ; gain = 140.582 ; free physical = 59 ; free virtual = 241
+INFO: [SYSC 207-301] Generating SystemC RTL for kernel3.
+INFO: [VHDL 208-304] Generating VHDL RTL for kernel3.
+INFO: [VLOG 209-307] Generating Verilog RTL for kernel3.
+INFO: [HLS 200-112] Total elapsed time: 4.12 seconds; peak allocated memory: 57.971 MB.
