@@ -10,6 +10,7 @@ Using different computer architecture techniques:
 1. A Cycle-by-Cycle Simulator of an Out-of-Order Processor [1] (implemented by Python).
 2. A Cycle-by-Cycle Scheduler for a VLIW Processor [2-3] (implemented by Python).
 3. High-level Synthesis [4]. (implemented by C in vivado HLS).
+4. Cache Attack 
 
 ## Reference
 1. [MIPS R10000 Superscalar Microprocessor](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=491460).
